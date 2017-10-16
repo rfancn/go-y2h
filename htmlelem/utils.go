@@ -5,6 +5,8 @@ import (
 	"strings"
 	"sort"
 	"fmt"
+	"runtime"
+	"path"
 )
 
 //bsMapGetOrDefault try to get value by key in map[string][]byte
@@ -143,4 +145,26 @@ func IFSlice2StrSlice(is []interface{}) []string {
 		ss[i] = fmt.Sprint(v)
 	}
 	return ss
+}
+
+func getTemplateDir() string {
+	//curFilePath is: /path/to/htmlelem/utils.go
+	_, curFilePath, _, ok := runtime.Caller(0)
+	if !ok {
+		return ""
+	}
+	//path.Dir get go-y2h/htmlelem dir
+	//the 2nd path.Dir get go-y2h dir
+	templateDir := path.Join(path.Dir(path.Dir(curFilePath)), "templates")
+	return templateDir
+}
+
+func getTemplateFile(template string, elemName string) string {
+	templateDir := getTemplateDir()
+	if len(templateDir) == 0 {
+		return ""
+	}
+
+	filename := elemName + ".html"
+	return path.Join(templateDir, template, filename)
 }

@@ -3,7 +3,6 @@ package htmlelem
 import (
 	"fmt"
 	"strings"
-	"path"
 	"github.com/anmitsu/go-shlex"
 	"github.com/flosch/pongo2"
 )
@@ -56,9 +55,7 @@ func (el *BaseElem) Init(template string, elemName string, elemValue interface{}
 }
 
 func (el *BaseElem) Render() []byte{
-	//get template file
-	file := fmt.Sprintf("%s.html", el.ElemName)
-	templateFile := path.Join("go-y2h", "templates", el.Template, file)
+	templateFile := getTemplateFile(el.Template, el.ElemName)
 
 	if el.Current != nil {
 		return RenderElem(templateFile, el.Current)
@@ -113,6 +110,8 @@ func parseAttrStr(attrStr string) map[string][]byte {
 
 	return elemAttrMap
 }
+
+
 
 func RenderElem(templateFile string, el HtmlElementer) []byte {
 	t := pongo2.Must(pongo2.FromFile(templateFile))
