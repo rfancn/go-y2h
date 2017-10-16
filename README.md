@@ -3,7 +3,7 @@ y2h stands for: YAML to HTML, it aims to help translate YAML to HTML based on di
 It doesn't want to be a complete functional HTML generator, 
 in most of time, it used as form component builder by only define some few lines.
 
-#### Introduction
+### Introduction
 Four item which can affect the translating of HTML can be defined in YAML document:
 - template
   if no such item defines in YAML document, uses "bootstrap3" by default, now it only supports bootstrap3, it will support more templates in the future
@@ -22,7 +22,7 @@ Four item which can affect the translating of HTML can be defined in YAML docume
     file: specify the filename of javascript libray
 - css(under dev)
  
-#### Example
+### Example
 Example YAML document:
 ```yaml
 html:
@@ -37,6 +37,7 @@ javascript:
 ```
 
 If not specify template, it use "bootstrap3" as default template, and translate To:
+#### HTML:
 ```html
 <form name="form1" class="form-horizontal">
 <div class="form-group">
@@ -47,11 +48,15 @@ If not specify template, it use "bootstrap3" as default template, and translate 
 </div>
 </form>
 ```
+#### Javascript:
+Return Type: []map[string]string
 ```go
-map[string][string] {
-  "inline":"
-  function helloworld(){
-        console.log("hello world!");
-  }; "
-}
+[
+  map[string]string{"inline":"
+    function helloworld(){
+          console.log("hello world!");
+    }; "
+  },
+  ...
+]
 ```
