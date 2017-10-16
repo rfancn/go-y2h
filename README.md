@@ -47,7 +47,7 @@ If not specify template, it use "bootstrap3" as default template, and translate 
 </div>
 </form>
 ```
-```javascript
+```go
 map[string][string] {
   "inline":"
   function helloworld(){
