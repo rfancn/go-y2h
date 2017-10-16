@@ -19,13 +19,13 @@ There are 3 kinds of javascript can be defined here:
     external: src="https://cdn.datatables.net/select/1.2.2/js/dataTables.select.min.js"
     ```
   - cdn:
-    * locale: specify locale of the CDN, it support "cn" and "en". when specify "cn", it will use bootcss CDN, if specify "en", it use cloudflare CDN  
+    * locale: specify locale of the CDN, it support "cn" and "en". when specify "cn", it will use bootcss CDN, if specify "en", it use cloudflare CDN,e,g:  
       ```cdn: locale="cn"```
-    * category: specify the category of javascript library  
+    * category: specify the category of javascript library,e,g:  
       ```cdn: name="select"```
-    * ver: specify the version of javascript library  
-      ```cdn: ver="1.2.2"```
-    * file: specify the filename of javascript libray  
+    * ver: specify the version of javascript library,e,g:  
+    ```cdn: ver="1.2.2"```
+    * file: specify the filename of javascript libray,e,g:  
       ```cdn: file="js/dataTables.select.min.js"```
 - css(under dev)
  
