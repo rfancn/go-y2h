@@ -1,0 +1,26 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" {{ elem.Attribute|safe }}>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      {% if elem.Header %}
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{{ elem.Header }}</h4>
+      </div>
+      {% endif %}
+      {% if elem.Body %}
+      <div class="modal-body">
+          {% for child_elem in elem.Fieldset %}
+          {% include child_elem.ElemName|add:".html" with elem=child_elem %}
+          {% endfor %}
+      </div>
+      {% endif %}
+      {% if elem.Footer %}
+      <div class="modal-footer">
+          {% for child_elem in elem.Fieldset %}
+          {% include child_elem.ElemName|add:".html" with elem=child_elem %}
+          {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

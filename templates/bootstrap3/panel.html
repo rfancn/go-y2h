@@ -1,0 +1,29 @@
+{% if elem.Attribute %}<div {{ elem.Attribute|safe }}>{% else %}<div>{% endif %}
+
+{# when exist panel header #}
+{% if elem.Header %}
+<div class="panel-heading">{{ elem.Header }}</div>
+{% endif %}
+{# when exist panel body #}
+{% if elem.Body %}
+<div class="panel-body">
+{% for child_elem in elem.Body %}
+    {% include child_elem.ElemName|add:".html" with elem=child_elem %}
+{% endfor %}
+</div>
+{% endif %}
+{# when exist panel fieldset #}
+{% if elem.Fieldset %}
+    {% for child_elem in elem.Fieldset %}
+        {% include child_elem.ElemName|add:".html" with elem=child_elem %}
+    {% endfor %}
+{% endif %}
+{# when exist panel footer #}
+{% if elem.Footer %}
+<div class="panel-footer">
+    {% for child_elem in elem.Footer %}
+        {% include child_elem.ElemName|add:".html" with elem=child_elem %}
+    {% endfor %}
+</div>
+{% endif %}
+</div>

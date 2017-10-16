@@ -1,0 +1,16 @@
+html:
+  - panel: name="panel1"
+    header: "header2"
+    body:
+      - form:
+        fieldset:
+          - input: name="input1"
+          - input: name="input2"
+    footer:
+      - button: name="button1" text="button1"
+    fieldset:
+      - table:
+        thead: ['No', 'Name', 'Address']
+        tbody:
+          - [1, 'ryan', 'changsha' ]
+          - [2, 'chen', 'chengdu' ]

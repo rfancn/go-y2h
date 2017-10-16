@@ -1,0 +1,7 @@
+html:
+  - form:
+    fieldset:
+      - button: name="btn1" option="primary" button-text="button1"
+      - button: name="btn2" option="primary" button-size="small"
+      - button: name="btn3" option="primary" button-style="success"
+      - button: name="btn4" option="primary" button-style="success" button-size="small" button-text="button4"
