@@ -45,15 +45,15 @@ func (self *button) processButtonStyle() {
 }
 
 func (self *button) processButtonSize() {
-	size := bsMapGetOrDefault(self.ElemAttrMap, "button-size", BUTTON_DEFAULT_SIZE)
+	size := bsMapGetOrDefault(self.ElemAttrMap, "size", BUTTON_DEFAULT_SIZE)
 	class := sMapGetOrDefault(BTN_SIZE_CLASSES, size, BUTTON_DEFAULT_SIZE_CLASS)
 
-	delete(self.ElemAttrMap, "button-size")
+	delete(self.ElemAttrMap, "size")
 	//make sure size class after style class(whose length is 2)
 	self.insertCssClass(2, class)
 }
 
 func (self *button) processButtonText() {
-	self.Text = bsMapGetOrDefault(self.ElemAttrMap, "button-text", "")
-	delete(self.ElemAttrMap, "button-text")
+	self.Text = bsMapGetOrDefault(self.ElemAttrMap, "text", "")
+	delete(self.ElemAttrMap, "text")
 }

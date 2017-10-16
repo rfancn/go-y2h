@@ -1,11 +1,7 @@
 javascript:
-  - cdn: name="datatables" ver="1.10.15" file="js/jquery.dataTables.min.js"
+  - cdn: category="datatables" ver="1.10.15" file="js/jquery.dataTables.min.js"
   - external: src="https://cdn.datatables.net/select/1.2.2/js/dataTables.select.min.js"
   - inline: |
       function helloworld(){
         console.log("hello world!");
       };
-
-
-
-

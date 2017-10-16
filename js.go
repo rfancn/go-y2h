@@ -1,4 +1,4 @@
-package goy2h
+package go_y2h
 
 import (
 	"fmt"
@@ -9,6 +9,7 @@ const CDN_LOCALE_CN = "cn"
 const CDN_LOCALE_EN = "en"
 const CDN_LOCALE_DEFAULT = CDN_LOCALE_CN
 
+//<base url>/category/ver/file
 const CDN_BOOTCSS_URL_TEMPLATE = "https://cdn.bootcss.com/%s/%s/%s"
 const CDN_CLOUDFLARE_URL_TEMPLATE = "https://cdnjs.cloudflare.com/ajax/libs/%s/%s/%s"
 const CDN_URL_TEMPLATE_DEFAULT = CDN_BOOTCSS_URL_TEMPLATE
@@ -74,7 +75,7 @@ func getCdnJS(jsValue interface{}) map[string]string {
 	cdnMap := convertKVStringToMap(cdnString)
 
 	//validate if cndMap contains required keys
-	var requireKeys = []string{"name", "ver", "file"}
+	var requireKeys = []string{"category", "ver", "file"}
 	for _, k := range requireKeys {
 		if _, exist := cdnMap[k]; !exist {
 			return nil
@@ -91,7 +92,7 @@ func getCdnJS(jsValue interface{}) map[string]string {
 		cdnUrlTemplate = CDN_URL_TEMPLATE_DEFAULT
 	}
 
-	cdnURL := fmt.Sprintf(cdnUrlTemplate, cdnMap["name"], cdnMap["ver"], cdnMap["file"])
+	cdnURL := fmt.Sprintf(cdnUrlTemplate, cdnMap["category"], cdnMap["ver"], cdnMap["file"])
 
 	return buildExternalJavascript(cdnURL)
 }

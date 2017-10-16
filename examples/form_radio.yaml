@@ -9,7 +9,7 @@ html:
           - item
           - item
       # with attribute, no items
-      - radio: name="radio1" help-label="radio label"
+      - radio: name="radio1" help-label="radio label" radio-style="inline"
       # with attribute, empty items
       #- radio: name="radio2" y2h-label="radio label"
       #  items:

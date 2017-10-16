@@ -58,7 +58,7 @@ func (el *BaseElem) Init(template string, elemName string, elemValue interface{}
 func (el *BaseElem) Render() []byte{
 	//get template file
 	file := fmt.Sprintf("%s.html", el.ElemName)
-	templateFile := path.Join("goy2h", "templates", el.Template, file)
+	templateFile := path.Join("go-y2h", "templates", el.Template, file)
 
 	if el.Current != nil {
 		return RenderElem(templateFile, el.Current)
