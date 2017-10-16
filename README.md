@@ -36,11 +36,6 @@ html:
   - form: name="form1"
     fieldset:
     - input: help-label="input help label" type="text" value="input value" required
-javascript:
-  - inline: |
-      function helloworld(){
-        console.log("hello world!");
-      }; 
 ```
 
 If not specify template, it use "bootstrap3" as default template, and translate To:
@@ -56,14 +51,24 @@ If not specify template, it use "bootstrap3" as default template, and translate 
 </form>
 ```
 #### Javascript:
-Return Type: []map[string]string
+Example javascript definition in YAML document
+```yaml
+javascript:
+  - cdn: name="datatables" ver="1.10.15" file="js/jquery.dataTables.min.js"
+  - external: src="https://cdn.datatables.net/select/1.2.2/js/dataTables.select.min.js"
+  - inline: |
+      function helloworld(){
+        console.log("hello world!");
+      };
+```
+
+It returns type: []map[string]string. Each item of slice represents a javascript object, key is the type of javascript, value is the string of javascript content. Now there are only two types of javascript type: "external" and "inline". Though we can define cdn type of javascript, finally it still outputs as an "external" type javascript, also "inline" type of javascript contains the raw content of javascript content, we can embed it in HTML page directly.
 ```go
 [
-  map[string]string{"inline":"
-    function helloworld(){
-          console.log("hello world!");
-    }; "
-  },
-  ...
+map[external:<script src=https://cdn.bootcss.com/datatables/1.10.15/js/jquery.dataTables.min.js></script>]
+map[external:<script src=src="https://cdn.datatables.net/select/1.2.2/js/dataTables.select.min.js"></script>]
+map[inline:function helloworld(){
+  console.log("hello world!");
+};]
 ]
 ```
