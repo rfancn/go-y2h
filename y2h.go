@@ -19,7 +19,7 @@ type FileY2H struct{
 	yamlDocument *YAMLDocument
 }
 
-func NewY2H() *FileY2H {
+func New() *FileY2H {
 	return &FileY2H{}
 }
 

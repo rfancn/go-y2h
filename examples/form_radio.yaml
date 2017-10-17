@@ -18,6 +18,6 @@ html:
       # with attribute + normal items
       - radio: name="radio3" help-label="消息加解密类型"
         items:
-        - item: item-label="明文模式" name="msg_encrypt_method" v-model="method" value="clear" abc
-        - item: item-label="兼容模式" name="msg_encrypt_method" v-model="method" value="compatible"
-        - item: item-label="安全模式（推荐）" name="msg_encrypt_method" v-model="method" value="secure"
+        - item: label="明文模式" name="msg_encrypt_method" v-model="method" value="clear" abc
+        - item: label="兼容模式" name="msg_encrypt_method" v-model="method" value="compatible"
+        - item: label="安全模式（推荐）" name="msg_encrypt_method" v-model="method" value="secure"

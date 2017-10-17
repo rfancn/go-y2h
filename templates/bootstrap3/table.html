@@ -1,9 +1,9 @@
-{% if elem.Attribute %}<table {{ elem.Attribute }}>{% else %}<table>{% endif %}
+{% if elem.Attribute %}<table {{ elem.Attribute|safe }}>{% else %}<table>{% endif %}
 {% if elem.Thead %}
 <thead>
     <tr>
         {% for th in elem.Thead %}
-        <th>{{ th }}</th>
+        <th>{{ th|safe }}</th>
         {% endfor %}
     </tr>
 </thead>
@@ -13,7 +13,7 @@
     {% for tr in elem.Tbody %}
     <tr>
         {% for td in tr %}
-        <td>{{ td }}</td>
+        <td>{{ td|safe }}</td>
         {% endfor %}
     </tr>
     {% endfor %}

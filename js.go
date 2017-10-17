@@ -2,7 +2,7 @@ package go_y2h
 
 import (
 	"fmt"
-
+	"bytes"
 )
 
 const CDN_LOCALE_CN = "cn"
@@ -21,8 +21,9 @@ var CDN_URL_TEMPLATES = map[string]string{
 	CDN_LOCALE_EN: CDN_CLOUDFLARE_URL_TEMPLATE,
 }
 
-func (y2h *FileY2H) GetJavascript() []map[string]string {
-	jsSlice := make([]map[string]string, 0)
+func (y2h *FileY2H) GetJavascript() map[string]string {
+	var inlineJsBuffer bytes.Buffer
+	var externalJsBuffer bytes.Buffer
 
 	for _, jsValue := range y2h.yamlDocument.Javascript {
 		//jsValue must be a map
@@ -31,44 +32,41 @@ func (y2h *FileY2H) GetJavascript() []map[string]string {
 			continue
 		}
 
-		var js map[string]string
 		for k,v := range jsMap {
 			jsType := fmt.Sprint(k)
 			switch jsType {
 				case "cdn":
-					js = getCdnJS(v)
-				case "inline":
-					js = getInlineJS(v)
+					externalJsBuffer.WriteString(getCdnJS(v))
 				case "external":
-					js = getExternalJS(v)
-			}
-			if js != nil {
-				jsSlice = append(jsSlice, js)
+					externalJsBuffer.WriteString(getExternalJS(v))
+				case "inline":
+					inlineJsBuffer.WriteString(getInlineJS(v))
 			}
 		}
 	}
 
+	jsSlice := make(map[string]string)
+	jsSlice["inline"] = inlineJsBuffer.String()
+	jsSlice["external"] = externalJsBuffer.String()
+
 	return jsSlice
 }
 
-func getInlineJS(jsValue interface{}) map[string]string {
+func getInlineJS(jsValue interface{}) string {
 	// if it is inline, then jsValue should be a string
 	jsContent, ok := IF2String(jsValue)
 	if !ok {
-		return nil
+		return ""
 	}
 
-	js := make(map[string]string)
-	js["inline"] = jsContent
-
-	return js
+	return jsContent
 }
 
-func getCdnJS(jsValue interface{}) map[string]string {
+func getCdnJS(jsValue interface{}) string {
 	// if it is inline, then jsValue should be a string
 	cdnString, ok := IF2String(jsValue)
 	if !ok {
-		return nil
+		return ""
 	}
 
 	//convert cdn string to cdn map
@@ -78,7 +76,7 @@ func getCdnJS(jsValue interface{}) map[string]string {
 	var requireKeys = []string{"category", "ver", "file"}
 	for _, k := range requireKeys {
 		if _, exist := cdnMap[k]; !exist {
-			return nil
+			return ""
 		}
 	}
 
@@ -97,12 +95,22 @@ func getCdnJS(jsValue interface{}) map[string]string {
 	return buildExternalJavascript(cdnURL)
 }
 
-func getExternalJS(jsValue interface{}) map[string]string {
+func getExternalJS(jsValue interface{}) string {
 	// if it is inline, then jsValue should be a string
-	jsSrc, ok := IF2String(jsValue)
+	//e,g: src="https://cdn.datatables.net/select/1.2.2/js/dataTables.select.min.js"
+	jsContent, ok := IF2String(jsValue)
 	if !ok {
-		return nil
+		return ""
 	}
+
+	//convert cdn string to cdn map
+	jsMap := convertKVStringToMap(jsContent)
+	//validate if jsMap contains required "src" key
+	jsSrc, exist := jsMap["src"]
+	if !exist {
+		return ""
+	}
+
 	return buildExternalJavascript(jsSrc)
 }
 
@@ -114,9 +122,6 @@ func IF2String(value interface{}) (string, bool) {
 	return strValue, true
 }
 
-func buildExternalJavascript(src string) map[string]string {
-	js := make(map[string]string)
-	js["external"] = fmt.Sprintf(EXTERNAL_JS, src)
-
-	return js
+func buildExternalJavascript(src string) string {
+	return fmt.Sprintf(EXTERNAL_JS, src)
 }

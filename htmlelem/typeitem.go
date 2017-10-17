@@ -40,13 +40,13 @@ func getItemAttrMap(parent *ItemsElem, itemValue interface{}) map[string][]byte 
 **/
 
 func getItemLabel(itemAttrMap map[string][]byte) string {
-	sbLabel, exist := itemAttrMap["item-label"]
+	sbLabel, exist := itemAttrMap["label"]
 	if !exist {
 		return ""
 	}
 
 	//remove specific attribute "item-label", so it will not appears in attribute string
-	delete(itemAttrMap, "item-label")
+	delete(itemAttrMap, "label")
 	return string(sbLabel)
 }
 

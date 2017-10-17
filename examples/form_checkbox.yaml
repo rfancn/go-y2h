@@ -18,6 +18,6 @@ html:
       # with attribute + normal items
       - checkbox: name="checkbox2" help-label="中文"
         items:
-        - item: item-label="checkbox item1" v-model="method" value="clear" abc
-        - item: item-label="checkbox item2" v-model="method" value="compatible"
-        - item: item-label="checkbox item3" v-model="method" value="secure"
+        - item: label="checkbox item1" v-model="method" value="clear" abc
+        - item: label="checkbox item2" v-model="method" value="compatible"
+        - item: label="checkbox item3" v-model="method" value="secure"
