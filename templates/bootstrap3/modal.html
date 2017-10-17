@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" {{ elem.Attribute|safe }}>
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" {{ elem.Attribute|safe }}>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       {% if elem.Header %}
@@ -9,14 +9,14 @@
       {% endif %}
       {% if elem.Body %}
       <div class="modal-body">
-          {% for child_elem in elem.Fieldset %}
+          {% for child_elem in elem.Body %}
           {% include child_elem.ElemName|add:".html" with elem=child_elem %}
           {% endfor %}
       </div>
       {% endif %}
       {% if elem.Footer %}
       <div class="modal-footer">
-          {% for child_elem in elem.Fieldset %}
+          {% for child_elem in elem.Footer %}
           {% include child_elem.ElemName|add:".html" with elem=child_elem %}
           {% endfor %}
       </div>

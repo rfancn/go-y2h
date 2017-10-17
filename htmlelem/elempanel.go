@@ -24,6 +24,7 @@ func (self *panel) Init(template string, elemName string, elemValue interface{})
 	self.processPanelStyle()
 	self.processPanelHeader()
 	self.processPanelBody()
+	self.processPanelFooter()
 	self.postInit()
 }
 

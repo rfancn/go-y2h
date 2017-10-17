@@ -3,6 +3,7 @@ package go_y2h
 import (
 	"fmt"
 	"bytes"
+	"log"
 )
 
 const CDN_LOCALE_CN = "cn"
@@ -14,7 +15,7 @@ const CDN_BOOTCSS_URL_TEMPLATE = "https://cdn.bootcss.com/%s/%s/%s"
 const CDN_CLOUDFLARE_URL_TEMPLATE = "https://cdnjs.cloudflare.com/ajax/libs/%s/%s/%s"
 const CDN_URL_TEMPLATE_DEFAULT = CDN_BOOTCSS_URL_TEMPLATE
 
-const EXTERNAL_JS = "<script src=%s></script>"
+const EXTERNAL_JS = "<script src=\"%s\"></script>"
 
 var CDN_URL_TEMPLATES = map[string]string{
 	CDN_LOCALE_CN: CDN_BOOTCSS_URL_TEMPLATE,
@@ -37,10 +38,13 @@ func (y2h *FileY2H) GetJavascript() map[string]string {
 			switch jsType {
 				case "cdn":
 					externalJsBuffer.WriteString(getCdnJS(v))
+					externalJsBuffer.WriteString("\n")
 				case "external":
 					externalJsBuffer.WriteString(getExternalJS(v))
+					externalJsBuffer.WriteString("\n")
 				case "inline":
 					inlineJsBuffer.WriteString(getInlineJS(v))
+					inlineJsBuffer.WriteString("\n")
 			}
 		}
 	}
@@ -56,6 +60,7 @@ func getInlineJS(jsValue interface{}) string {
 	// if it is inline, then jsValue should be a string
 	jsContent, ok := IF2String(jsValue)
 	if !ok {
+		log.Println("getInlineJs():Type Assertion to string failed")
 		return ""
 	}
 
@@ -66,6 +71,7 @@ func getCdnJS(jsValue interface{}) string {
 	// if it is inline, then jsValue should be a string
 	cdnString, ok := IF2String(jsValue)
 	if !ok {
+		log.Println("getCdnJS():Type Assertion to string failed")
 		return ""
 	}
 
@@ -76,6 +82,7 @@ func getCdnJS(jsValue interface{}) string {
 	var requireKeys = []string{"category", "ver", "file"}
 	for _, k := range requireKeys {
 		if _, exist := cdnMap[k]; !exist {
+			log.Printf("getCdnJS():Required key:%s doesn't exist\n", k)
 			return ""
 		}
 	}
@@ -100,6 +107,7 @@ func getExternalJS(jsValue interface{}) string {
 	//e,g: src="https://cdn.datatables.net/select/1.2.2/js/dataTables.select.min.js"
 	jsContent, ok := IF2String(jsValue)
 	if !ok {
+		log.Println("getExternalJS():Type Assertion to string failed")
 		return ""
 	}
 
@@ -108,6 +116,7 @@ func getExternalJS(jsValue interface{}) string {
 	//validate if jsMap contains required "src" key
 	jsSrc, exist := jsMap["src"]
 	if !exist {
+		log.Println("getExternalJS():Required key \"src\" doesn't exist")
 		return ""
 	}
 
