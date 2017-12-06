@@ -15,7 +15,7 @@
             <div {{ elem.Attribute|safe }}>
                 <label>
                     {% if item.Attribute %}
-                    <input type="radio" {{ item.Attribute|safe }}>{{ item.Label }}
+                    <input type="radio" {{ item.Attribute|safe }}>&nbsp;{{ item.Label }}
                     {% else %}
                     <input type="radio">{{ item.Label }}
                     {% endif %}
@@ -34,7 +34,7 @@
         {% for item in elem.Items %}
         <div {{ elem.Attribute|safe }}>
           <label>
-                <input type="radio" {{ item.Attribute|safe }}>{{ item.Label }}
+                <input type="radio" {{ item.Attribute|safe }}>&nbsp;{{ item.Label }}
           </label>
         </div>
         {% endfor %}
@@ -49,7 +49,7 @@
         {% for item in elem.Items %}
         <div {{ elem.Attribute|safe }}>
           <label>
-                <input type="radio" {{ item.Attribute|safe }}>{{ item.Label }}
+                <input type="radio" {{ item.Attribute|safe }}>&nbsp;{{ item.Label }}
           </label>
         </div>
         {% endfor %}

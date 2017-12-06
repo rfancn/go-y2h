@@ -14,7 +14,7 @@
         <div {{ elem.Attribute|safe }}>
             <label>
                 {% if item.Attribute %}
-                <input type="checkbox" {{ item.Attribute|safe }}>{{ item.Label }}
+                <input type="checkbox" {{ item.Attribute|safe }}>&nbsp;{{ item.Label }}
                 {% else %}
                 <input type="checkbox">{{ item.Label }}
                 {% endif %}
@@ -33,7 +33,7 @@
     {% for item in elem.Items %}
     <div {{ elem.Attribute|safe }}>
         <label>
-            <input type="checkbox" {{ item.Attribute|safe }}>{{ item.Label }}
+            <input type="checkbox" {{ item.Attribute|safe }}>&nbsp;{{ item.Label }}
         </label>
     </div>
     {% endfor %}
@@ -48,7 +48,7 @@
     {% for item in elem.Items %}
     <div {{ elem.Attribute|safe }}>
         <label>
-            <input type="checkbox" {{ item.Attribute|safe }}>{{ item.Label }}
+            <input type="checkbox" {{ item.Attribute|safe }}>&nbsp;{{ item.Label }}
         </label>
     </div>
     {% endfor %}
