@@ -1,8 +1,8 @@
-package y2h
+package goy2h
 
 import (
 	"regexp"
-	"github.com/rfancn/go-y2h/htmlelem"
+	"github.com/rfancn/goy2h/htmlelem"
 )
 
 const DEFAULT_TEMPLATE = "bootstrap3"

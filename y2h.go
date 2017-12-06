@@ -1,5 +1,5 @@
 //Package goy2h try to convert YAML to HTML
-package y2h
+package goy2h
 
 import (
 	"io/ioutil"

@@ -153,8 +153,8 @@ func getTemplateDir() string {
 	if !ok {
 		return ""
 	}
-	//path.Dir get go-y2h/htmlelem dir
-	//the 2nd path.Dir get go-y2h dir
+	//path.Dir get goy2h/htmlelem dir
+	//the 2nd path.Dir get goy2h dir
 	templateDir := path.Join(path.Dir(path.Dir(curFilePath)), "templates")
 	return templateDir
 }

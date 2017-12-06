@@ -1,4 +1,4 @@
-package y2h
+package goy2h
 
 import (
     "testing"
