@@ -1,4 +1,4 @@
-package go_y2h
+package y2h
 
 import (
 	"fmt"

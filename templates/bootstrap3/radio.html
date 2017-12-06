@@ -1,9 +1,8 @@
 {% if !form_layout %}{% set form_layout = "horizontal" %}{% endif %}
 
 {% set help_label=elem.help_label %}
-
 {# when form_layout is horizontal #}
-{% if form_layout == 'horizontal' %}
+{% if form_layout == "horizontal" %}
     <div class="form-group">
         {% if elem.HelpLabel %}
         <label class="col-sm-3 control-label">{{ elem.HelpLabel.innertext }}</label>
@@ -26,7 +25,7 @@
         </div>
     </div>
 {# when form_layout is inline #}
-{% elif form_layout == 'inline' %}
+{% elif form_layout == "inline" %}
     <div class="form-group">
         {% if elem.HelpLabel %}
         <label class="control-label">{{ elem.HelpLabel.innertext }}</label>
