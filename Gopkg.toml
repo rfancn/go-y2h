@@ -26,7 +26,7 @@
 
 [[constraint]]
   name = "github.com/flosch/pongo2"
-  version = "3.0.0"
+  branch = "master"
 
 [[constraint]]
   branch = "v2"
