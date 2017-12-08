@@ -7,7 +7,7 @@ import (
 
 const DEFAULT_TEMPLATE = "bootstrap3"
 
-func (y2h *FileY2H) GetHtml() string {
+func (y2h *Y2H) GetHtml() string {
 	htmlContent := make([]byte, 0)
 	for _, elemValue := range y2h.yamlDocument.Html {
 		el := htmlelem.NewElem(y2h.yamlDocument.Template, elemValue)

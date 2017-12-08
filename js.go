@@ -22,7 +22,7 @@ var CDN_URL_TEMPLATES = map[string]string{
 	CDN_LOCALE_EN: CDN_CLOUDFLARE_URL_TEMPLATE,
 }
 
-func (y2h *FileY2H) GetJavascript() map[string]string {
+func (y2h *Y2H) GetJavascript() map[string]string {
 	var inlineJsBuffer bytes.Buffer
 	var externalJsBuffer bytes.Buffer
 

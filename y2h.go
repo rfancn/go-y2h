@@ -15,16 +15,27 @@ type YAMLDocument struct {
 	Javascript []interface{}   `yaml:"javascript"`
 }
 
-type FileY2H struct{
+type Y2H struct{
 	yamlDocument *YAMLDocument
 }
 
-func New() *FileY2H {
-	return &FileY2H{}
+func New() *Y2H {
+	return &Y2H{}
 }
 
-func (y2h *FileY2H) Read(yamlFilename string) bool {
-	yamlDocument, err := parseYaml(yamlFilename)
+func (y2h *Y2H) ReadFile(yamlFilename string) bool {
+	// read yaml file and unmarshal to YAMLDocument struct
+	yamlContent, err := ioutil.ReadFile(yamlFilename)
+	if err != nil {
+		fmt.Printf("Failed to read YAML file: %s", yamlFilename)
+		return false
+	}
+
+	return y2h.ReadBytes(yamlContent)
+}
+
+func (y2h *Y2H) ReadBytes(yamlConent []byte) bool {
+	yamlDocument, err := parseYaml(yamlConent)
 	if err != nil {
 		fmt.Println(err)
 		return false
@@ -35,19 +46,9 @@ func (y2h *FileY2H) Read(yamlFilename string) bool {
 }
 
 //parseYaml and returns YamlDocument instance
-func parseYaml(yamlFilename string) (*YAMLDocument, error) {
-	// read yaml file and unmarshal to YAMLDocument struct
-	content, err := ioutil.ReadFile(yamlFilename)
-	if err != nil {
-		errMsg := fmt.Sprintf("Failed to read YAML file: %s", yamlFilename)
-		return nil, NewY2HError(errMsg, err)
-	}
-
-	//if len(content) <=0 {
-	//	return NewY2HError("Empty YAML content")
-	//}
+func parseYaml(yamlContent []byte) (*YAMLDocument, error) {
 	yamlDocument := &YAMLDocument{}
-	err = yaml.Unmarshal(content, yamlDocument)
+	err := yaml.Unmarshal(yamlContent, yamlDocument)
 	if err != nil {
 		return nil, NewY2HError("Failed to unmarshal YAML", err)
 	}

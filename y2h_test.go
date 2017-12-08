@@ -8,7 +8,7 @@ var y = New()
 
 func TestEmptyForm(t *testing.T) {
 
-   if ok := y.Read("examples/form.yaml"); !ok{
+   if ok := y.ReadFile("examples/form.yaml"); !ok{
      t.Error("Failed to read test.yaml")
    }
 
@@ -20,7 +20,7 @@ func TestEmptyForm(t *testing.T) {
 
 func TestButtons(t *testing.T) {
     y := New()
-    if ok := y.Read("examples/form_button.yaml"); !ok{
+    if ok := y.ReadFile("examples/form_button.yaml"); !ok{
         t.Error("Failed to read test.yaml")
     }
 
