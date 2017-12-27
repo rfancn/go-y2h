@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 	"github.com/anmitsu/go-shlex"
-	"github.com/flosch/pongo2"
+	"path"
 )
 
 type BaseElem struct{
@@ -54,13 +54,12 @@ func (el *BaseElem) Init(template string, elemName string, elemValue interface{}
 	el.Current = nil
 }
 
-func (el *BaseElem) Render() []byte{
-	templateFile := getTemplateFile(el.Template, el.ElemName)
+func (el *BaseElem) GetTemplateFile() string {
+	return path.Join(el.Template, el.ElemName + ".html")
+}
 
-	if el.Current != nil {
-		return RenderElem(templateFile, el.Current)
-	}
-	return RenderElem(templateFile, el)
+func (el *BaseElem) GetCurrentElem() HtmlElementer {
+	return el.Current
 }
 
 //parseElemAttrStr parse element attribute string to map
@@ -109,19 +108,6 @@ func parseAttrStr(attrStr string) map[string][]byte {
 	}
 
 	return elemAttrMap
-}
-
-
-
-func RenderElem(templateFile string, el HtmlElementer) []byte {
-	t := pongo2.Must(pongo2.FromFile(templateFile))
-
-	output, err := t.ExecuteBytes(pongo2.Context{"elem": el})
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	return output
 }
 
 //getElemAttrString convert attribute Map to attribute string

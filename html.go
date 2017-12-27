@@ -3,6 +3,7 @@ package goy2h
 import (
 	"regexp"
 	"github.com/rfancn/goy2h/htmlelem"
+	"github.com/rfancn/goy2h/template"
 )
 
 const DEFAULT_TEMPLATE = "bootstrap3"
@@ -16,7 +17,8 @@ func (y2h *Y2H) GetHtml() string {
 			continue
 		}
 
-		bsOutput := el.Render()
+		//bsOutput := el.Render()
+		bsOutput := template.Render(el)
 
 		// try remove blank lines
 		re := regexp.MustCompile(`(?m)^\s*$[\r\n]*|[\r\n]+\s+\z`)

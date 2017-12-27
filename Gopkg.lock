@@ -8,10 +8,16 @@
   revision = "648efa622239a2f6ff949fed78ee37b48d499ba4"
 
 [[projects]]
+  branch = "master"
   name = "github.com/flosch/pongo2"
   packages = ["."]
-  revision = "5e81b817a0c48c1c57cdf1a9056cf76bdee02ca9"
-  version = "v3.0"
+  revision = "1f4be1efe3b3529b7e58861f75d70120a9567dc4"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/juju/errors"
+  packages = ["."]
+  revision = "c7d06af17c68cd34c835053720b21f6549d9b0ee"
 
 [[projects]]
   branch = "v2"
@@ -22,6 +28,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5ee8385086174cdf2ebe8370bc5801952e4381f32f5016a38af8be5758d2a7ed"
+  inputs-digest = "36e3499ff58c3f548329c34f0ec367bc7fccd120f35327b7c55cbfce3191a8ef"
   solver-name = "gps-cdcl"
   solver-version = 1

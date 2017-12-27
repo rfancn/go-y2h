@@ -2,6 +2,7 @@ package goy2h
 
 import (
     "testing"
+    "fmt"
 )
 
 var y = New()

@@ -13,7 +13,8 @@ var elementTypeSet = make(map[string]uint8)
 
 type HtmlElementer interface {
 	Init(template string, elemName string, elemValue interface{})
-	Render() []byte
+	GetTemplateFile() string
+	GetCurrentElem() HtmlElementer
 }
 
 func init() {

@@ -1,6 +1,8 @@
 //Package goy2h try to convert YAML to HTML
 package goy2h
 
+//go:generate go-bindata -o template/bindata.go -pkg template asset/...
+
 import (
 	"io/ioutil"
 	"fmt"
