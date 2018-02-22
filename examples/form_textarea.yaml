@@ -1,0 +1,17 @@
+html:
+  - form: name="abc"
+    fieldset:
+      # simplest input without label
+      - textarea
+      # with label
+      - textarea: help-label="label input" name="textarea1"
+      # with single attribute
+      - textarea: required
+      # with both key-value attribute and single attribute
+      - textarea: rows="3" disabled
+      # with specific key name which contains '-'
+      - textarea: aria-label="test"
+      # no quotes for attribute value
+      - textarea: type=text
+      # complex one
+      - textarea: help-label="textarea exmple" a-b=xxx c-d-e="yyy" f-g-h-i=z required

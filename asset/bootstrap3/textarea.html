@@ -1,0 +1,45 @@
+{% if !form_layout %}{% set form_layout = "horizontal" %}{% endif %}
+
+{# when form_layout is horizontal #}
+{% if form_layout == "horizontal" %}
+<div class="form-group">
+    {% if elem.HelpLabel %}
+    <label class="col-sm-3 control-label" for="{{ elem.HelpLabel.for }}">{{ elem.HelpLabel.innertext }}</label>
+    {% else %}
+    <div class="col-sm-3"></div>
+    {% endif %}
+    <div class="col-sm-9">
+            {% if elem.Attribute %}
+        <textarea class="form-control" {{ elem.Attribute|safe }}>
+        {% else %}
+        <textarea class="form-control">
+        {% endif %}
+    </div>
+</div>
+{# when form_layout is inline #}
+{% elif form_layout == "inline" %}
+<div class="form-group">
+    {% if elem.HelpLabel %}
+    <label for="{{ elem.HelpLabel.for }}">{{ elem.HelpLabel.innertext }}</label>
+    {% endif %}
+
+    {% if elem.Attribute %}
+    <textarea class="form-control" {{ elem.Attribute|safe }}>
+    {% else %}
+    <textarea class="form-control">
+    {% endif %}
+</div>
+{# when form_layout is default #}
+{% else %}
+<div class="form-group">
+    {% if elem.HelpLabel %}
+    <label for="{{ elem.HelpLabel.for }}">{{ elem.HelpLabel.innertext }}</label>
+    {% endif %}
+
+    {% if elem.Attribute %}
+    <textarea class="form-control" {{ elem.Attribute }}>
+    {% else %}
+    <textarea class="form-control">
+    {% endif %}
+</div>
+{% endif %}

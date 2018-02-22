@@ -23,6 +23,7 @@ func init() {
 	// when compared with registerElemType(&form{})
 	registerElemType(&form{})
 	registerElemType(&input{})
+	registerElemType(&textarea{})
 	registerElemType(&button{})
 	registerElemType(&item{})
 	registerElemType(&checkbox{})
