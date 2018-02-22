@@ -10,9 +10,9 @@
     {% endif %}
     <div class="col-sm-9">
             {% if elem.Attribute %}
-        <textarea class="form-control" {{ elem.Attribute|safe }}>
+        <textarea class="form-control" {{ elem.Attribute|safe }}></textarea>
         {% else %}
-        <textarea class="form-control">
+        <textarea class="form-control"></textarea>
         {% endif %}
     </div>
 </div>
@@ -24,9 +24,9 @@
     {% endif %}
 
     {% if elem.Attribute %}
-    <textarea class="form-control" {{ elem.Attribute|safe }}>
+    <textarea class="form-control" {{ elem.Attribute|safe }}></textarea>
     {% else %}
-    <textarea class="form-control">
+    <textarea class="form-control"></textarea>
     {% endif %}
 </div>
 {# when form_layout is default #}
@@ -37,9 +37,9 @@
     {% endif %}
 
     {% if elem.Attribute %}
-    <textarea class="form-control" {{ elem.Attribute }}>
+    <textarea class="form-control" {{ elem.Attribute }}></textarea>
     {% else %}
-    <textarea class="form-control">
+    <textarea class="form-control"></textarea>
     {% endif %}
 </div>
 {% endif %}
